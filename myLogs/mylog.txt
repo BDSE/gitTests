@@ -1,0 +1,30 @@
+My log———>>>>>>>
+
+
+rabbitMQ was not installed correctly, users were not added properly. 
+>>>> added users again, according to the confluence doc
+
+Some certificate error, wouldn’t let me login to my health app
+>>>>> installed the certificate to the desired directory.
+
+Wasn’t able to open localdev.stanfordhealthcare.org, because tomcat couldn’t read my root.xml from Catalina dir, root.xml point the server to start from target folder project,
+>>>>>>syntax of the root.xml wasn’t correct.
+
+Compass had issues, ruby couldn’t find it, don’t know why I installed it earlier.
+Error: While executing gem ... (Errno::EPERM)
+    Operation not permitted - /usr/bin/sass
+Because this man verify was also failing as the grunt test were not going through.
+>>>>>>>>>>>installed ruby, compass through brew.
+Brew install ruby 
+sudo Gem install compass
+
+Tried to achieve live reload using gulp, when I installed node modules, like gulp-reload, gulp-compass(was not working as compass was not found, while trying to compile sass files it encountered error while executing @import compass) my git has many files to be committed (changed) turns out some one checked in a node module grunt-usemin something like this, which should not be done as node packages should only be installed through package.json. removed the grunt-usein from repository
+
+
+Grunt unit:test doesn’t work. Grunt unit task calls karma test file.
+>>>>>> updated the versions of grunt-karma and karma modules and it worked.. 
+
+
+RSYNC doesn’t work on tomcat due to permissions, you have to sudo everytime, dealing eith rigel it was giving me hard time whenever I was trying to rsync the changes from rigel source code to tomcat rigel folder.
+
+Solution: run rigel from the dev-current war rather than deploying a rigel war directly to tomcat. Just like we are doing it for orionweb, created a Rigel.war in tomcat conf same as I created ROOT.xml for orionweb.
