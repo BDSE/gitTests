@@ -28,3 +28,5 @@ Grunt unit:test doesn’t work. Grunt unit task calls karma test file.
 RSYNC doesn’t work on tomcat due to permissions, you have to sudo everytime, dealing eith rigel it was giving me hard time whenever I was trying to rsync the changes from rigel source code to tomcat rigel folder.
 
 Solution: run rigel from the dev-current war rather than deploying a rigel war directly to tomcat. Just like we are doing it for orionweb, created a Rigel.war in tomcat conf same as I created ROOT.xml for orionweb.
+
+should not code in the documents folder, took out all the code from it, now app runs from another folder.

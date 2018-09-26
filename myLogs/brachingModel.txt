@@ -1,0 +1,76 @@
+Team,
+ 
+Please read and understand the entirety of this email.
+ 
+Starting next Sprint we will be implementing a new branching methodology on the Orion/Platform side, this will also affect what code is deployed in the pre-production environments. We feel this is necessary in order to achieve the following major goals:
+ 
+Allow development work and stable releases to continue as we are working on the Epic 2018 upgrade and potentially multiple Inpatient releases.
+Minimize our current risk of accidentally releasing some future work while preserving a stable release train.
+Increase throughput and improve new development visibility to QA as they will now be able to test development work for future features earlier and in parallel.
+ 
+In order to do this we will be maintaining multiple branches in the orion, orionweb, and rigel repositories. This will be similar to a “feature branching” model, however we are going to limit the complexity by using only a limited set of “project” branches and an (initially) consistent mapping of pre-production environments where these will be deployed. This is also a bit different from feature branches in that the project branches will be longer lived, more on this later. We are currently not creating the project branches for orioncommon or hyperspaceadmin, this can be done if later found to be necessary. This process will likely have some challenges (some I will discuss below) and I urge everyone to pay close attention to how the process is working and communicate and offer feedback so that we may improve over time.
+ 
+Below is a summary of our projects and associated branches and deployment environments:
+ 
+ 
+Release Train
+ 
+orion branch: develop, release
+orionweb branch: develop, release
+rigel branch: none
+ 
+This project will currently contain our Epic 2017 bi-weekly feature releases and the process will remain essentially unchanged. Development work continues on the develop branches and will be branched into a release branch a short time prior to a release.
+ 
+This project will no longer be deployed to POC and will progress through TST/STG -> UAT -> PROD
+ 
+ 
+Inpatient 2017
+ 
+orion branch: inpatient2017
+orionweb branch: inpatient2017
+rigel branch: develop
+ 
+We currently have interest in deploying a small initial Inpatient release with Epic 2017, including Care Team, Test Results, and Medications. Any ongoing Inpatient development work should be done within these branches and no longer on develop. Current inpatient code on develop can remain, but should be disabled as is currently done for a release branch.
+ 
+This project will be deployed to the forthcoming MyHealth GEN environment (which will be pointing to the Epic GEN2 environment) for testing. When we near release we will merge this work to the release train and eventually start shipping.
+ 
+ 
+Epic 2018 + additional Inpatient features.
+ 
+orion branch: epic2018
+orionweb branch: epic2018
+rigel branch: epic2018
+ 
+This project will exist so that we can begin work on the changes needed for Epic 2018, as well as continued work on Guided Patient Journey features that will not be included with the aforementioned Inpatient Epic 2017 release.
+ 
+This project will be deployed to POC.
+ 
+Around the time that TST/STG is upgraded to 2018 we will move this to the release train for shipping and sunset our other projects.
+ 
+You can find up-to-date information about what is deployed in the environments at: https://stanfordhospital.atlassian.net/wiki/spaces/ORION/pages/432341043/Branches+for+Projects
+ 
+ 
+Merging
+ 
+Theoretically, we could work on all of these branches separately and resolve everything on the eventual merge back to the release train. However, since our project branches will be “long lived” this would likely be very messy and error prone as the branches drift apart over time. To alleviate this we should perform small merges into the project branches on a periodic basis. At this time, we have decided not to set hard rules on this, which is similar to what we do on mobile, but I will ask everyone for a heightened level of awareness and communication, please watch the commits of others and perform or suggest merges if you feel they are needed. Here are some general guidelines I would recommend:
+ 
+Please merge as opposed to making separate commits to different branches.
+The primary developers on a project branch should make sure the project branch is relatively up-to-date with the release train at some intervals (like after release).
+If a developer makes significant or architectural changes to the release train that they feel would affect the other projects, they should immediately work with others to get those changes merged to the other projects and make sure the projects work with the new changes.
+Changes in the Inpatient 2017 project should probably always be immediately merged to the Epic 2018 branches, since Epic 2018 guided journey features are a superset of Inpatient 2017 features.
+If you find yourself needing to merge a change from the Epic 2018 branch anywhere else (before we join the release train) then you probably committed to the wrong branch.
+If you find a merge resolution unclear or are unsure, please work with the developer who wrote the conflicting code to get it resolved.
+If you consider a merge to be high risk or are unsure, please request a spot regression from QA (via a JIRA ticket) in the affected area of the destination branch.
+ 
+Thanks, and please keep communication open and frequent as we work through any new challenges this may bring. I am looking forward to the improvements and increasing our ability to get more features into QA sooner.
+ 
+Thanks,
+ 
+Lance
+ 
+ 
+ 
+ 
+ 
+ 
+ 
